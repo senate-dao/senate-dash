@@ -24,12 +24,10 @@ export default function Home() {
         <div className={styles.grid}>
           <Link passHref href="/forms" className={styles.card}>
             <h2>Forms &rarr;</h2>
-            <p>An aggregated view into your dao forms</p>
           </Link>
 
           <Link passHref href="/votes" className={styles.card}>
             <h2>Votes &rarr;</h2>
-            <p>An aggregated view into your votes</p>
           </Link>
         </div>
       </main>
