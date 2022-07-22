@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -21,15 +22,13 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <a href="/forms" className={styles.card}>
+          <Link passHref href="/forms" className={styles.card}>
             <h2>Forms &rarr;</h2>
-            <p>An aggregated view into your dao forms</p>
-          </a>
+          </Link>
 
-          <a href="/votes" className={styles.card}>
+          <Link passHref href="/votes" className={styles.card}>
             <h2>Votes &rarr;</h2>
-            <p>An aggregated view into your votes</p>
-          </a>
+          </Link>
         </div>
       </main>
 
