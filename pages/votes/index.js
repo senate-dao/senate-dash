@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-key */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useTable } from 'react-table'
+import { get_votes } from '../../src/votes';
 
 const Styles = styled.div`
   padding: 1rem;
@@ -80,33 +81,18 @@ function Votes() {
         Header: 'Voter',
         columns: [
           {
-            Header: "Voter",
-            accessor: "voter"
-          },
-          {
             Header: "Choice",
             accessor: "choice"
-          },
-          {
-            Header: "voted_on",
-            accessor: "voted_on"
           },]
       },
       {
         Header: "Proposal",
         columns: [{
-          Header: 'proposal',
-          accessor: 'proposal.id',
-        }, {
-          Header: 'Link',
-          accessor: 'proposal.link',
-        },
-          , {
           Header: 'Title',
           accessor: 'proposal.title',
         }, {
-          Header: 'State',
-          accessor: 'proposal.state',
+          Header: 'Link',
+          accessor: 'proposal.link',
         }, {
           Header: 'Start Date',
           accessor: 'proposal_create_date',
@@ -134,48 +120,32 @@ function Votes() {
     []
   )
 
-  const data = [
-    {
-      "voter": "Me",
-      "choice": "Yes",
-      "voted_on": "Yes",
-      "proposal": {
-        "id": "1",
-        "link": "mylink",
-        "title": "title",
-        "proposal_state": "",
-        "proposal_create_date": "",
-        "proposal_end_date": "",
-        "votes_received": ""
-      },
-      "dao": {
-        "id": "",
-        "name": ""
-      }
-    }, {
-      "voter": "Me",
-      "choice": "Yes",
-      "voted_on": "Yes",
-      "proposal": {
-        "id": "1",
-        "link": "mylink",
-        "title": "title",
-        "proposal_state": "state",
-        "proposal_create_date": "123",
-        "proposal_end_date": "123",
-        "votes_received": "100"
-      },
-      "dao": {
-        "id": "12",
-        "name": "My DAO"
-      }
-    },
-  ];
+  const [data, setData] = useState([]);
+
+  const [address, setAddress] = useState("0x2B888954421b424C5D3D9Ce9bB67c9bD47537d12");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const votes = await get_votes(address, 1);
+
+    if (votes.votes) {
+      setData(votes.votes);
+    }
+  };
 
   return (
-    <Styles>
-      <Table columns={columns} data={data} />
-    </Styles>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+      <Styles>
+        <Table columns={columns} data={data} />
+      </Styles>
+    </div>
   )
 }
 
