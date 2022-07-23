@@ -22,7 +22,10 @@ async function get_latest_proposal() {
         const response = await fetch(forum_urls[i]["forum_link"], {
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "crossDomain": true,
+                "X-PINGOTHER":" pingpong"
+
                 // 'Content-Type': 'application/x-www-form-urlencoded',
             }
         })
