@@ -49,5 +49,5 @@ function parse_response(response, dao_name, proposal_link) {
     return proposals
 
 }
-console.log(await get_latest_proposal())
+
 export {get_latest_proposal}
