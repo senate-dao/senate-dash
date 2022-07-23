@@ -3,8 +3,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { useTable } from 'react-table'
 
-import makeData from './makeData'
-
 const Styles = styled.div`
   padding: 1rem;
 
@@ -79,34 +77,100 @@ function Votes() {
   const columns = React.useMemo(
     () => [
       {
-        Header: "Proposal Name",
-        accessor: "proposal"
+        Header: 'Voter',
+        columns: [
+          {
+            Header: "Voter",
+            accessor: "voter"
+          },
+          {
+            Header: "Choice",
+            accessor: "choice"
+          },
+          {
+            Header: "voted_on",
+            accessor: "voted_on"
+          },]
       },
       {
-        Header: "Date Voted",
-        accessor: "date"
+        Header: "Proposal",
+        columns: [{
+          Header: 'proposal',
+          accessor: 'proposal.id',
+        }, {
+          Header: 'Link',
+          accessor: 'proposal.link',
+        },
+          , {
+          Header: 'Title',
+          accessor: 'proposal.title',
+        }, {
+          Header: 'State',
+          accessor: 'proposal.state',
+        }, {
+          Header: 'Start Date',
+          accessor: 'proposal_create_date',
+        }, {
+          Header: 'End Date',
+          accessor: 'proposal_end_date',
+        }, {
+          Header: 'Received',
+          accessor: 'votes_received',
+        }
+        ]
       },
       {
-        Header: "Your Vote",
-        accessor: "vote"
+        Header: "dao",
+        columns: [{
+          Header: 'ID',
+          accessor: "dao.id"
+        }, {
+          Header: 'Name',
+          accessor: "dao.name"
+        },
+        ]
       },
-      {
-        Header: "Result",
-        accessor: "result"
-      },
-      {
-        Header: "Link to Vote",
-        accessor: "vote_url"
-      },
-      {
-        Header: "Rationale",
-        accessor: "rationale"
-      }
     ],
     []
   )
 
-  const data = React.useMemo(() => makeData(20), [])
+  const data = [
+    {
+      "voter": "Me",
+      "choice": "Yes",
+      "voted_on": "Yes",
+      "proposal": {
+        "id": "1",
+        "link": "mylink",
+        "title": "title",
+        "proposal_state": "",
+        "proposal_create_date": "",
+        "proposal_end_date": "",
+        "votes_received": ""
+      },
+      "dao": {
+        "id": "",
+        "name": ""
+      }
+    }, {
+      "voter": "Me",
+      "choice": "Yes",
+      "voted_on": "Yes",
+      "proposal": {
+        "id": "1",
+        "link": "mylink",
+        "title": "title",
+        "proposal_state": "state",
+        "proposal_create_date": "123",
+        "proposal_end_date": "123",
+        "votes_received": "100"
+      },
+      "dao": {
+        "id": "12",
+        "name": "My DAO"
+      }
+    },
+  ];
 
   return (
     <Styles>
