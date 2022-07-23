@@ -4,10 +4,10 @@ interface VoterProps {
   onSubmit: () => void;
 }
 function Forms(props: VoterProps) {
+  console.log("is this function getting called");
   return (
     <div>
-      {" "}
-      <ForumList></ForumList>{" "}
+      <ForumList></ForumList>
     </div>
   );
 }

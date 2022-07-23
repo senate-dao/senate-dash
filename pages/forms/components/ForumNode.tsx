@@ -30,14 +30,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-export default function ForumNode(props) {
+export default function ForumNode(props: voterNodeProps) {
   const classes = useStyles();
 
-  function createAvatar(post) {
-    switch (post.type) {
+  function createAvatar(post: Post) {
+    switch (post?.type) {
       case "new":
         return <FiberNew sx={{ color: purple[500] }} />;
-      case "new":
+      case "reply":
         return <Reply sx={{ color: purple[500] }} />;
 
       default:
@@ -45,8 +45,8 @@ export default function ForumNode(props) {
     }
   }
   //function for rendering primary text in our copy
-  function primaryText(post) {
-    switch (post.type) {
+  function primaryText(post: Post) {
+    switch (post?.type) {
       case "new":
         return (
           <Typography component="div">
@@ -57,11 +57,11 @@ export default function ForumNode(props) {
         return "Invalid Post";
     }
   }
-  function createVoterIcons(post) {
-    if (post?.votes_received < 10) {
+  function createVoterIcons(post: Post) {
+    if (post?.reply_count < 10) {
       return <Person sx={{ color: purple[500] }} />;
     }
-    if (post?.votes_received > 10 && post?.votes_received < 20) {
+    if (post?.reply_count > 10 && post?.reply_count < 20) {
       return (
         <div>
           <Person sx={{ color: purple[500] }} />{" "}
@@ -69,7 +69,7 @@ export default function ForumNode(props) {
         </div>
       );
     }
-    if (post?.votes_received > 20) {
+    if (post?.reply_count > 20) {
       return (
         <div>
           <Person sx={{ color: purple[500] }} />{" "}
@@ -90,9 +90,7 @@ export default function ForumNode(props) {
           secondary={
             <Typography>
               {" "}
-              {props.data?.proposal_create_date.toLocaleDateString(
-                "pt-PT"
-              )}{" "}
+              {props.data?.date_created.toLocaleDateString("pt-PT")}{" "}
             </Typography>
           }
         />

@@ -1,7 +1,7 @@
 let forum_urls = [
   {
     forum_name: "Balancer",
-    forum_link: "https://forum.balancer.fi/latest.json?ascending=false",
+    forum_link: "https://forum.balancer.fi/latest.json",
     proposal_link: "https://forum.balancer.fi/t/",
   },
   {
@@ -18,21 +18,30 @@ let forum_urls = [
 
 async function get_latest_proposal() {
   var latest_prop = [];
+  console.log("");
+  let data = {};
   for (let i = 0; i < forum_urls.length; i++) {
+    console.log(forum_urls[i]["forum_link"]);
     const response = await fetch(forum_urls[i]["forum_link"], {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
+      body: JSON.stringify(data),
       headers: {
+        Accept: "application/json",
         "Content-Type": "application/json",
-        crossDomain: true,
-        "X-PINGOTHER": " pingpong",
+        // crossDomain: true,
+        // "X-PINGOTHER": " pingpong",
 
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
+
+    console.log("did we make it past that");
+    console.log(response);
+    let json = await response.json();
     latest_prop = latest_prop.concat(
       latest_prop,
       parse_response(
-        await response.json(),
+        json,
         forum_urls[i]["forum_name"],
         forum_urls[i]["proposal_link"]
       )

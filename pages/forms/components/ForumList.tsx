@@ -12,15 +12,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
 }));
 export interface Post {
-  proposal_id: string;
-  link: string;
+  dao: string;
   title: string;
-  dao_id: string;
-  dao_name: string;
-  proposal_state: string;
-  proposal_create_date: Date;
-  proposal_end_date: Date;
-  votes_received: string;
+  date_created: Date;
+  link: string;
+  reply_count: number;
+  type: string;
 }
 export default function ForumList(props) {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -34,9 +31,26 @@ export default function ForumList(props) {
       try {
         //temp event
         let postData = [];
-        let temp = await get_latest_proposal();
+        console.log("we are here in useeffect");
+        console.log(postData);
+        let temp = await fetch(
+          "https://senatelabsbackend.herokuapp.com/forums"
+        );
         console.log(temp);
-        setPosts(postData);
+        let tempJson = await temp.json();
+        console.log(tempJson);
+        console.log(Object.keys(tempJson[0]));
+        tempJson = tempJson.map((post: Post) => {
+          return {
+            ...post,
+            type: "new",
+            date_created: new Date(post?.date_created),
+          };
+        });
+        tempJson = tempJson.filter((post: Post) => {
+          return Object.values(post).every((x) => x !== null && x !== "");
+        });
+        setPosts(tempJson);
       } catch {
         setHasError(true);
       }
@@ -60,7 +74,7 @@ export default function ForumList(props) {
         >
           <List>
             {posts.map((post) => (
-              <div key={post.proposal_id}>
+              <div key={post?.date_created.toLocaleTimeString()}>
                 <ForumNode data={post}></ForumNode>
                 <Divider variant="inset" component="li" />
               </div>

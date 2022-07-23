@@ -19,8 +19,7 @@ export default function Home() {
 
         <div className={styles.grid}>
           <Link passHref href="/forms" className={styles.card}>
-            <h2>Forms &rarr;</h2>
-            <Forms></Forms>
+            <a>Forums</a>
           </Link>
 
           <Link passHref href="/votes" className={styles.card}>
