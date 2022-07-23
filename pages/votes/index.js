@@ -126,7 +126,7 @@ function Votes() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const votes = await get_votes(address, 1);
+    const votes = await get_votes(address, 0);
 
     if (votes.votes) {
       setData(votes.votes);
