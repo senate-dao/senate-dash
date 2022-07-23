@@ -179,3 +179,4 @@ proposals(first: 100, skip: skip_interval ,where:{space_in:spaces_array,state:"a
 }
 
 export {get_votes,get_proposal,get_dao}
+
