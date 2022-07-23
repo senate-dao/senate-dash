@@ -1,5 +1,6 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,7 +14,11 @@
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-table": "^7.8.0",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.5",
+    "graphql": "^16.5.0",
+    "graphql-request": "^4.3.0",
+    "node-fetch": "^3.2.9",
+    "web3": "^1.7.4"
   },
   "devDependencies": {
     "eslint": "8.12.0",
