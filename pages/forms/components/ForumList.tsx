@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ForumNode from "./ForumNode";
 import { makeStyles } from "@mui/styles";
-import { Theme, Grid, List, Divider } from "@mui/material";
+import { Theme, Grid, List, Divider, Tab, Tabs, Box } from "@mui/material";
 import { get_latest_proposal } from "../../../src/forum";
-// import "../styles/forum.module.css";
+import styles from "../../../styles/forum.module.css";
 const useStyles = makeStyles((theme: Theme) => ({
   root: {
     width: "700px",
@@ -19,11 +19,14 @@ export interface Post {
   reply_count: number;
   type: string;
 }
+interface ForumListProps {
+  dao: string;
+}
 function openPost(post: Post) {
   post["read"] = true;
   window.open(encodeURI(post.link), "_blank", "noopener,noreferrer");
 }
-export default function ForumList(props) {
+export default function ForumList(props: ForumListProps) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -47,7 +50,10 @@ export default function ForumList(props) {
           };
         });
         tempJson = tempJson.filter((post: Post) => {
-          return Object.values(post).every((x) => x !== null && x !== "");
+          return (
+            post.dao == props.dao &&
+            Object.values(post).every((x) => x !== null && x !== "")
+          );
         });
         setPosts(tempJson);
       } catch {
@@ -58,12 +64,14 @@ export default function ForumList(props) {
     loadPosts();
   }, [setPosts]);
   return (
-    <div>
+    <div className={styles.div}>
       {hasError && (
-        <p>Error encountered in parsing forum posts, please try again</p>
+        <p className={styles.p}>
+          Error encountered in parsing forum posts, please try again
+        </p>
       )}
       {isLoading ? (
-        <p>Loading Forum Posts. Please wait</p>
+        <p className={styles.p}>Loading Forum Posts. Please wait</p>
       ) : (
         <Grid
           container
@@ -74,6 +82,7 @@ export default function ForumList(props) {
           <List>
             {posts.map((post) => (
               <div
+                className={styles.div}
                 key={`${post?.date_created.toLocaleTimeString()} - ${
                   post.title
                 } - ${post.dao} - ${Math.random()}`}
