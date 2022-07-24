@@ -1,8 +1,8 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Link from 'next/link'
-
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import Link from "next/link";
+import Forms from "./forms";
 export default function Home() {
   return (
     <div className={styles.container}>
@@ -13,17 +13,13 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Seneate DAO
-        </h1>
+        <h1 className={styles.title}>Seneate DAO</h1>
 
-        <p className={styles.description}>
-          Your window to delegation
-        </p>
+        <p className={styles.description}>Your window to delegation</p>
 
         <div className={styles.grid}>
           <Link passHref href="/forms" className={styles.card}>
-            <h2>Forms &rarr;</h2>
+            <a>Forums</a>
           </Link>
 
           <Link passHref href="/votes" className={styles.card}>
@@ -38,12 +34,12 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
+  );
 }
