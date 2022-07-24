@@ -93,15 +93,13 @@ function Votes() {
         }, {
           Header: 'Link',
           accessor: 'proposal.link',
+          Cell: ({ cell: { value } }) => <a href={value}>{value}</a>
         }, {
           Header: 'Start Date',
-          accessor: 'proposal_create_date',
+          accessor: 'proposal.proposal_create_date',
         }, {
           Header: 'End Date',
-          accessor: 'proposal_end_date',
-        }, {
-          Header: 'Received',
-          accessor: 'votes_received',
+          accessor: 'proposal.proposal_end_date',
         }
         ]
       },
@@ -115,6 +113,9 @@ function Votes() {
           accessor: "dao.name"
         },
         ]
+      },
+      {
+        Header: "Resonal",
       },
     ],
     []

@@ -42,15 +42,15 @@ async function get_votes(address,skip_interval) {
         votes.push(  {
             "voter": votes_data["votes"][i]["voter"],
             "choice": votes_data["votes"][i]["proposal"]["choices"][votes_data["votes"][i]["choice"]-1],
-            "voted_on": new Date(votes_data["votes"][i]["created"]*1000),
+            "voted_on": (new Date(votes_data["votes"][i]["created"]*1000)).toLocaleDateString(),
             "proposal": {
                 "id": votes_data["votes"][i]["proposal"]["id"],
                 "link": votes_data["votes"][i]["proposal"]["link"],
                 "title": votes_data["votes"][i]["proposal"]["title"],
                 "proposal_state": votes_data["votes"][i]["proposal"]["state"],
-                "proposal_create_date": new Date(votes_data["votes"][i]["proposal"]["created"]),
-                "proposal_end_date": new Date(votes_data["votes"][i]["proposal"]["end"]),
-                "votes_received": votes_data["votes"][i]["proposal"]["id"]["votes"]
+                "proposal_create_date": (new Date(votes_data["votes"][i]["proposal"]["created"]*1000)).toLocaleDateString(),
+                "proposal_end_date": (new Date(votes_data["votes"][i]["proposal"]["end"]*1000)).toLocaleDateString(),
+                //"votes_received": votes_data["votes"][i]["proposal"]["id"]["votes"]
             },
             "dao": {
                 "id": votes_data["votes"][i]["space"]["id"],
@@ -165,9 +165,9 @@ proposals(first: 100, skip: skip_interval ,where:{space_in:spaces_array,state:"a
             "dao_id": all_proposals[i]["space"]["id"],
             "dao_name": all_proposals[i]["space"]["name"],
             "proposal_state": all_proposals[i]["state"],
-            "proposal_create_date": new Date(all_proposals[i]["start"] * 1000),
-            "proposal_end_date": new Date(all_proposals[i]["end"] * 1000),
-            "votes_received": all_proposals[i]["votes"]
+            "proposal_create_date": (new Date(all_proposals[i]["start"] * 1000)).toLocaleDateString(),
+            "proposal_end_date": (new Date(all_proposals[i]["end"] * 1000)).toLocaleDateString(),
+            //"votes_received": all_proposals[i]["votes"]
         })
     }
     if (proposal_active["proposals"].length === 100 || proposal_closed["proposals"].length === 100) {
