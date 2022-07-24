@@ -19,6 +19,10 @@ export interface Post {
   reply_count: number;
   type: string;
 }
+function openPost(post: Post) {
+  console.log(post.link);
+  window.open(encodeURI(post.link), "_blank", "noopener,noreferrer");
+}
 export default function ForumList(props) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -74,7 +78,12 @@ export default function ForumList(props) {
         >
           <List>
             {posts.map((post) => (
-              <div key={post?.date_created.toLocaleTimeString()}>
+              <div
+                key={`${post?.date_created.toLocaleTimeString()} - ${
+                  post.title
+                } - ${post.dao} - ${Math.random()}`}
+                onClick={() => openPost(post)}
+              >
                 <ForumNode data={post}></ForumNode>
                 <Divider variant="inset" component="li" />
               </div>

@@ -15,6 +15,7 @@ import { purple } from "@mui/material/colors";
 import { Post } from "./ForumList";
 interface voterNodeProps {
   data: Post;
+  // onClick: () => void;
 }
 const useStyles = makeStyles((theme) => ({
   listItem: {
