@@ -20,7 +20,7 @@ export interface Post {
   type: string;
 }
 function openPost(post: Post) {
-  console.log(post.link);
+  post["read"] = true;
   window.open(encodeURI(post.link), "_blank", "noopener,noreferrer");
 }
 export default function ForumList(props) {
@@ -35,15 +35,10 @@ export default function ForumList(props) {
       try {
         //temp event
         let postData = [];
-        console.log("we are here in useeffect");
-        console.log(postData);
         let temp = await fetch(
           "https://senatelabsbackend.herokuapp.com/forums"
         );
-        console.log(temp);
         let tempJson = await temp.json();
-        console.log(tempJson);
-        console.log(Object.keys(tempJson[0]));
         tempJson = tempJson.map((post: Post) => {
           return {
             ...post,
@@ -68,7 +63,7 @@ export default function ForumList(props) {
         <p>Error encountered in parsing forum posts, please try again</p>
       )}
       {isLoading ? (
-        <p>Loading Events Data. Please wait</p>
+        <p>Loading Forum Posts. Please wait</p>
       ) : (
         <Grid
           container

@@ -51,7 +51,7 @@ export default function ForumNode(props: voterNodeProps) {
       case "new":
         return (
           <Typography component="div">
-            <Box fontWeight={700} component="span">{`${post.title}`}</Box> added
+            <Box fontWeight={700} component="span">{`${post.title}`}</Box>
           </Typography>
         );
       default:

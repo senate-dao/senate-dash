@@ -18,10 +18,8 @@ let forum_urls = [
 
 async function get_latest_proposal() {
   var latest_prop = [];
-  console.log("");
   let data = {};
   for (let i = 0; i < forum_urls.length; i++) {
-    console.log(forum_urls[i]["forum_link"]);
     const response = await fetch(forum_urls[i]["forum_link"], {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
       body: JSON.stringify(data),
@@ -34,9 +32,6 @@ async function get_latest_proposal() {
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
-
-    console.log("did we make it past that");
-    console.log(response);
     let json = await response.json();
     latest_prop = latest_prop.concat(
       latest_prop,
