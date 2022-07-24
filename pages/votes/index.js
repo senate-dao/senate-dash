@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { useTable } from 'react-table'
+import { useTable, useSortBy } from 'react-table'
 import { get_votes } from '../../src/votes';
 
 const Styles = styled.div`
@@ -44,7 +44,9 @@ function Table({ columns, data }) {
   } = useTable({
     columns,
     data,
-  })
+  },
+  useSortBy
+  )
 
   // Render the UI for your table
   return (
@@ -53,7 +55,17 @@ function Table({ columns, data }) {
         {headerGroups.map(headerGroup => (
           <tr {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+              <th {...column.getHeaderProps(column.getSortByToggleProps()
+               )}>{column.render('Header')}
+               {}
+               <span>
+                    {column.isSorted
+                      ? column.isSortedDesc
+                        ? ' 🔽'
+                        : ' 🔼'
+                      : ''}
+                  </span>
+              </th>
             ))}
           </tr>
         ))}
@@ -93,7 +105,7 @@ function Votes() {
         }, {
           Header: 'Link',
           accessor: 'proposal.link',
-          Cell: ({ cell: { value } }) => <a href={value}>{value}</a>
+          Cell: ({ cell: { value } }) => <a href={value}>link</a>
         }, {
           Header: 'Start Date',
           accessor: 'proposal.proposal_create_date',
@@ -116,6 +128,9 @@ function Votes() {
       },
       {
         Header: "Resonal",
+        Cell: 
+        <textarea id="story" name="story"
+          rows="5" cols="33"></textarea>
       },
     ],
     []
