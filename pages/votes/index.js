@@ -3,6 +3,12 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useTable } from 'react-table'
 import { get_votes } from '../../src/votes';
+import { styled as mustyled } from '@mui/material/styles';
+import MaUTable from '@mui/material/Table'
+import TableBody from '@mui/material/TableBody'
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead'
+import TableRow from '@mui/material/TableRow'
 
 const Styles = styled.div`
   padding: 1rem;
@@ -33,6 +39,26 @@ const Styles = styled.div`
   }
 `
 
+const StyledTableCell = mustyled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = mustyled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
+
 function Table({ columns, data }) {
   // Use the state and functions returned from useTable to build your UI
   const {
@@ -48,29 +74,29 @@ function Table({ columns, data }) {
 
   // Render the UI for your table
   return (
-    <table {...getTableProps()}>
-      <thead>
+    <MaUTable {...getTableProps()} sx={{ minWidth: 700 }}>
+      <TableHead>
         {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
+          <StyledTableRow {...headerGroup.getHeaderGroupProps()}>
             {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+              <StyledTableCell {...column.getHeaderProps()}>{column.render('Header')}</StyledTableCell>
             ))}
-          </tr>
+          </StyledTableRow>
         ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
+      </TableHead>
+      <TableBody {...getTableBodyProps()}>
         {rows.map((row, i) => {
           prepareRow(row)
           return (
-            <tr {...row.getRowProps()}>
+            <StyledTableRow {...row.getRowProps()}>
               {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                return <StyledTableCell {...cell.getCellProps()}>{cell.render('Cell')}</StyledTableCell>
               })}
-            </tr>
+            </StyledTableRow>
           )
         })}
-      </tbody>
-    </table>
+      </TableBody>
+    </MaUTable>
   )
 }
 
