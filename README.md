@@ -1,34 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+#Senate
 
-## Getting Started
+One-Stop Solution for Delegates: Automation to track voting activity & Stay up-to-date with current DAO affairs with Senate
 
-First, run the development server:
+##Inspiration
+Our inspiration stems from the problems that current delegates face as they navigate through various DAOs to participate in decentralized governance.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+##What it does
+Senate is an all-in-one solution to enhance a delegates workflow. Initially, Senate automates tracking + managing voting activity and aggregates updates from various forums on a single page to reduce the friction of delegates' work.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+With the automated vote tracker, we help delegates track all their voting activities across different protocols to not only manage their workload but also take a step back to understand how much they have spent voting at a protocol. This voting tracker can also be used as one of a few factors to help determine a delegate's compensation rate.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+For the forum dashboard, delegates can stay up-to-date with current DAO affairs without hopping across forums separately. Less tabs, less stress.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+##How we built it
+We aggregated the data from snapshot and discourse forms to showcase how delegates can view proposals and votes in a single page. We used typescript and react on the front-end and graphQL to fetch the discourse data.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+##Challenges we ran into
+Time: We didn't have enough time to develop specially for the frontend Data: each protocol's forum has a different json format
 
-## Learn More
+##Accomplishments that we're proud of
+We are a somewhat last-minute entry to the hackathon but we managed to focus on our two main features and ship a product we are proud of.
 
-To learn more about Next.js, take a look at the following resources:
+##What we learned
+Continuous communication between the team is essential for success. Even having one or two meetings a day to discuss the progress helped a lot. Task management and Time management are one of the most essential things for succeeding hackathon.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+##What's next for Senate
+Trello-like dashboard for organisations or groups to separate individuals and their protocols. I.E Bobby handles optimism and balancer etc, steve handles maker and Aave etc.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Ability to track current active proposals & Draft responses to forum discussions or votes
 
-## Deploy on Vercel
+Show voting power, amount of delegators, link to delegate thread
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Categorize votes by the person who handled that voting interaction (i.e. Bobby voted optimism)
