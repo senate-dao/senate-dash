@@ -1,4 +1,4 @@
-div {
+.div {
   font-weight: 400;
   font-family: "Muli", "Mulish";
   font-size: 14px;
@@ -6,10 +6,10 @@ div {
   overflow: hidden;
   white-space: nowrap;
 }
-div:hover {
+.div:hover {
   overflow: visible;
 }
-span {
+.span {
   font-weight: 700;
   font-family: "Muli", "Mulish";
   font-size: 14px;
@@ -17,10 +17,10 @@ span {
   overflow: hidden;
   white-space: nowrap;
 }
-span:hover {
+.span:hover {
   overflow: visible;
 }
-p {
+.p {
   font-weight: 400;
   font-family: "Muli", "Mulish";
   font-size: 12px;
@@ -28,6 +28,6 @@ p {
   overflow: hidden;
   white-space: nowrap;
 }
-p:hover {
+.p:hover {
   overflow: visible;
 }
