@@ -93,6 +93,7 @@ function Votes() {
         }, {
           Header: 'Link',
           accessor: 'proposal.link',
+          Cell: ({ cell: { value } }) => <a href={value}>{value}</a>
         }, {
           Header: 'Start Date',
           accessor: 'proposal.proposal_create_date',
